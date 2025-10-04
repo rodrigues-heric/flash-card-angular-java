@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import rodrigues.leite.heric.flashcards.Flashcards.Model.FlashcardModel;
 import rodrigues.leite.heric.flashcards.Flashcards.Repository.FlashcardRepository;
 
+import java.util.Optional;
+
 @Service
 public class FlashcardService {
 
@@ -13,5 +15,9 @@ public class FlashcardService {
 
     public FlashcardModel saveFlashcard(FlashcardModel flashcard) {
         return this.flashcardRepository.save(flashcard);
+    }
+
+    public Optional<FlashcardModel> getFlashcardById(Long id) {
+        return this.flashcardRepository.findById(id);
     }
 }
