@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import rodrigues.leite.heric.flashcards.Folders.Model.FolderModel;
 import rodrigues.leite.heric.flashcards.Folders.Repository.FolderRepository;
 
+import java.util.Optional;
+
 @Service
 public class FolderService {
 
@@ -13,5 +15,9 @@ public class FolderService {
 
     public FolderModel saveFolder(FolderModel folder) {
         return this.folderRepository.save(folder);
+    }
+
+    public Optional<FolderModel> getFolderById(Long id) {
+        return this.folderRepository.findById(id);
     }
 }
