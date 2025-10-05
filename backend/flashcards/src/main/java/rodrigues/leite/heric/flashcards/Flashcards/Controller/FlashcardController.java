@@ -27,7 +27,20 @@ public class FlashcardController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Optional<FlashcardModel>> updateFlashcard(@PathVariable Long id, @RequestBody FlashcardModel flashcard) {
+    public ResponseEntity<Optional<FlashcardModel>> updateFlashcard(
+            @PathVariable Long id,
+            @RequestBody FlashcardModel flashcard
+    ) {
         return ResponseEntity.ok(this.flashcardService.updateFlashcard(id, flashcard));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFlashcard(@PathVariable Long id) {
+        if (this.flashcardService.getFlashcardById(id).isPresent()) {
+            this.flashcardService.deleteFlashcard(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }

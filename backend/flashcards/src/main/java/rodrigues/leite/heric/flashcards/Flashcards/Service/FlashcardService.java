@@ -30,10 +30,14 @@ public class FlashcardService {
             existingFlashcard.setFaceText(flashcard.getFaceText());
             existingFlashcard.setBackText(flashcard.getBackText());
             existingFlashcard.setOptionalHint(flashcard.getOptionalHint());
-            
+
             return Optional.of(this.saveFlashcard(existingFlashcard));
         }
 
         return Optional.empty();
+    }
+
+    public void deleteFlashcard(Long id) {
+        this.flashcardRepository.deleteById(id);
     }
 }
