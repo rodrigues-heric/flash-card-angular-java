@@ -25,4 +25,9 @@ public class FlashcardController {
     public ResponseEntity<Optional<FlashcardModel>> getFlashcardById(@PathVariable Long id) {
         return ResponseEntity.ok(this.flashcardService.getFlashcardById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Optional<FlashcardModel>> updateFlashcard(@PathVariable Long id, @RequestBody FlashcardModel flashcard) {
+        return ResponseEntity.ok(this.flashcardService.updateFlashcard(id, flashcard));
+    }
 }
