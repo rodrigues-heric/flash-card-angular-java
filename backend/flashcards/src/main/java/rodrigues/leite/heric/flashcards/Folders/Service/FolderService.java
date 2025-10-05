@@ -20,4 +20,17 @@ public class FolderService {
     public Optional<FolderModel> getFolderById(Long id) {
         return this.folderRepository.findById(id);
     }
+
+    public Optional<FolderModel> updateFolder(Long id, FolderModel folder) {
+        Optional<FolderModel> existingFolderOptional = this.getFolderById(id);
+
+        if (existingFolderOptional.isPresent()) {
+            FolderModel existingFolder = existingFolderOptional.get();
+            existingFolder.setName(folder.getName());
+
+            return Optional.of(this.saveFolder(existingFolder));
+        }
+
+        return Optional.empty();
+    }
 }

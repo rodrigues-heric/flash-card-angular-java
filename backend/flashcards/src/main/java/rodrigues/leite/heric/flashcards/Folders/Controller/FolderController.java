@@ -25,4 +25,9 @@ public class FolderController {
     public ResponseEntity<Optional<FolderModel>> getFolderById(@PathVariable Long id) {
         return ResponseEntity.ok(this.folderService.getFolderById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Optional<FolderModel>> updateFolder(@PathVariable Long id, @RequestBody FolderModel folder) {
+        return ResponseEntity.ok(this.folderService.updateFolder(id, folder));
+    }
 }
