@@ -30,4 +30,14 @@ public class FolderController {
     public ResponseEntity<Optional<FolderModel>> updateFolder(@PathVariable Long id, @RequestBody FolderModel folder) {
         return ResponseEntity.ok(this.folderService.updateFolder(id, folder));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFolder(@PathVariable Long id) {
+        if (this.folderService.getFolderById(id).isPresent()) {
+            this.folderService.deleteFolder(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
