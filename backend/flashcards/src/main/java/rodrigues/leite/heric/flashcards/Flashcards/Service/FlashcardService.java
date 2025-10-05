@@ -1,7 +1,6 @@
 package rodrigues.leite.heric.flashcards.Flashcards.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import rodrigues.leite.heric.flashcards.Flashcards.Model.FlashcardModel;
 import rodrigues.leite.heric.flashcards.Flashcards.Repository.FlashcardRepository;
