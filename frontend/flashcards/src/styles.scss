@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --light-theme-bg-color: #eeeedd;
+  --light-theme-text-color: #333333;
+}
+
+html,
+body {
+  background-color: var(--light-theme-bg-color);
+  --bs-body-bg: var(--light-theme-bg-color);
+  color: var(--light-theme-text-color);
+  --bs-body-color: var(--light-theme-text-color);
+  font-family: "IBM Plex Mono", monospace;
+  --bs-body-font-family: "IBM Plex Mono", monospace;
+  font-weight: bold;
+  --bs-body-font-weight: bold;
+  margin: 10px;
+}

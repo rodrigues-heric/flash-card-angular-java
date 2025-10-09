@@ -3,10 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import { TitleComponent } from './components/title/title.component';
+import { CirclePlusBigComponent } from './icons/circle-plus-big/circle-plus-big.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    TitleComponent,
+    CirclePlusBigComponent
   ],
   imports: [
     BrowserModule,
