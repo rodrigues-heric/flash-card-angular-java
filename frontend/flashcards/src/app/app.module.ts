@@ -15,6 +15,8 @@ import { CreateCardComponent } from './pages/create-card/create-card.component';
 import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 import { CrossBigComponent } from './icons/cross-big/cross-big.component';
 import { CheckBigComponent } from './icons/check-big/check-big.component';
+import { PlusBigComponent } from './icons/plus-big/plus-big.component';
+import { EqualsBigComponent } from './icons/equals-big/equals-big.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { CheckBigComponent } from './icons/check-big/check-big.component';
     CreateDeckComponent,
     CrossBigComponent,
     CheckBigComponent,
+    PlusBigComponent,
+    EqualsBigComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
