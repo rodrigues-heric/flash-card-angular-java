@@ -35,8 +35,12 @@ export class CreateDeckComponent {
 
   public saveDeck(): void {
     if (this.getFormValid()) {
-      this.decksService.saveDeck(this.deckName);
-      this.navigateToHome();
+      this.decksService.saveDeck(this.deckName).subscribe({
+        next: () => this.navigateToHome(),
+        error: (error) => {
+          console.error('Error saving deck:', error);
+        },
+      });
     }
   }
 }

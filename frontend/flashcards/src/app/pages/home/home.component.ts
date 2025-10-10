@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { DecksService, IDeck } from 'src/app/services/decks.service';
 
 @Component({
   selector: 'app-home',
@@ -33,13 +34,41 @@ import { Router } from '@angular/router';
     ]),
   ],
 })
-export class HomeComponent {
-  constructor(private router: Router) {}
-
+export class HomeComponent implements OnInit {
   private isOptionsOpen = false;
+  private allDecks: IDeck[] = [];
 
-  public getOptionsState(): boolean {
+  constructor(private router: Router, private decksService: DecksService) {}
+
+  ngOnInit(): void {
+    this.decksService.getAllDecks().subscribe({
+      next: (decks: IDeck[]) => {
+        this.decks = decks;
+      },
+      error: (error) => {
+        console.error('Error fetching decks:', error);
+      },
+    });
+  }
+
+  get optionsState(): boolean {
     return this.isOptionsOpen;
+  }
+
+  get decks(): IDeck[] {
+    return this.allDecks;
+  }
+
+  set decks(decks: IDeck[]) {
+    this.allDecks = decks;
+  }
+
+  get isDownloading(): boolean {
+    return this.decksService.downloading;
+  }
+
+  get hasDecks(): boolean {
+    return this.decks.length > 0;
   }
 
   public toggleOptionsState(): void {

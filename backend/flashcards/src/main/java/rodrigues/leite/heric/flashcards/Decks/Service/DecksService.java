@@ -13,28 +13,32 @@ public class DecksService {
     @Autowired
     private DecksRepository decksRepository;
 
-    public DecksModel saveFolder(DecksModel folder) {
-        return this.decksRepository.save(folder);
+    public DecksModel saveDeck(DecksModel deck) {
+        return this.decksRepository.save(deck);
     }
 
-    public Optional<DecksModel> getFolderById(Long id) {
+    public Iterable<DecksModel> getAllDecks() {
+        return this.decksRepository.findAll();
+    }
+
+    public Optional<DecksModel> getDeckById(Long id) {
         return this.decksRepository.findById(id);
     }
 
-    public Optional<DecksModel> updateFolder(Long id, DecksModel folder) {
-        Optional<DecksModel> existingFolderOptional = this.getFolderById(id);
+    public Optional<DecksModel> updateDeck(Long id, DecksModel deck) {
+        Optional<DecksModel> existingDeckOptional = this.getDeckById(id);
 
-        if (existingFolderOptional.isPresent()) {
-            DecksModel existingFolder = existingFolderOptional.get();
-            existingFolder.setName(folder.getName());
+        if (existingDeckOptional.isPresent()) {
+            DecksModel existingDeck = existingDeckOptional.get();
+            existingDeck.setName(deck.getName());
 
-            return Optional.of(this.saveFolder(existingFolder));
+            return Optional.of(this.saveDeck(existingDeck));
         }
 
         return Optional.empty();
     }
 
-    public void deleteFolder(Long id) {
+    public void deleteDeck(Long id) {
         this.decksRepository.deleteById(id);
     }
 }

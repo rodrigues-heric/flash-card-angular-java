@@ -17,24 +17,29 @@ public class DecksController {
     private DecksService decksService;
 
     @PostMapping("/save")
-    public ResponseEntity<DecksModel> saveFolder(@RequestBody DecksModel folder) {
-        return ResponseEntity.ok(this.decksService.saveFolder(folder));
+    public ResponseEntity<DecksModel> saveDeck(@RequestBody DecksModel folder) {
+        return ResponseEntity.ok(this.decksService.saveDeck(folder));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<Iterable<DecksModel>> getAllDecks() {
+        return ResponseEntity.ok(this.decksService.getAllDecks());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<DecksModel>> getFolderById(@PathVariable Long id) {
-        return ResponseEntity.ok(this.decksService.getFolderById(id));
+    public ResponseEntity<Optional<DecksModel>> getDeckById(@PathVariable Long id) {
+        return ResponseEntity.ok(this.decksService.getDeckById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Optional<DecksModel>> updateFolder(@PathVariable Long id, @RequestBody DecksModel folder) {
-        return ResponseEntity.ok(this.decksService.updateFolder(id, folder));
+    public ResponseEntity<Optional<DecksModel>> updateDeck(@PathVariable Long id, @RequestBody DecksModel folder) {
+        return ResponseEntity.ok(this.decksService.updateDeck(id, folder));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFolder(@PathVariable Long id) {
-        if (this.decksService.getFolderById(id).isPresent()) {
-            this.decksService.deleteFolder(id);
+    public ResponseEntity<Void> deleteDeck(@PathVariable Long id) {
+        if (this.decksService.getDeckById(id).isPresent()) {
+            this.decksService.deleteDeck(id);
             return ResponseEntity.noContent().build();
         }
 
