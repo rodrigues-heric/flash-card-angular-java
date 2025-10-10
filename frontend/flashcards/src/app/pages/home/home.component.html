@@ -16,7 +16,19 @@
 <div class="row">
   <div class="col">
     <div class="position-fixed bottom-0 mb-2 start-50 translate-middle-x">
-      <icon-circle-plus-big></icon-circle-plus-big>
+      <div class="d-flex flex-column align-items-center gap-3">
+        <app-creation-option-card
+          *ngIf="getOptionsState()"
+        ></app-creation-option-card>
+        <app-creation-option-deck
+          *ngIf="getOptionsState()"
+        ></app-creation-option-deck>
+        <icon-circle-plus-big
+          class="rotate-icon"
+          [class.rotated]="getOptionsState()"
+          (click)="toggleOptionsState()"
+        ></icon-circle-plus-big>
+      </div>
     </div>
   </div>
 </div>

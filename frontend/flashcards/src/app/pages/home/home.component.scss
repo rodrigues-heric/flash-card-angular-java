@@ -1,0 +1,6 @@
+.rotate-icon {
+  transition: transform 0.2s ease-in-out;
+  &.rotated {
+    transform: rotate(45deg);
+  }
+}

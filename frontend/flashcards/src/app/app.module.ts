@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TitleComponent } from './components/title/title.component';
 import { CirclePlusBigComponent } from './icons/circle-plus-big/circle-plus-big.component';
+import { FolderOpenMediumComponent } from './icons/folder-open-medium/folder-open-medium.component';
+import { CreationOptionDeckComponent } from './components/creation-option-deck/creation-option-deck.component';
+import { CreateOptionCardComponent } from './components/creation-option-card/creation-option-card.component';
+import { CardMediumComponent } from './icons/card-medium/card-medium.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TitleComponent,
-    CirclePlusBigComponent
+    CirclePlusBigComponent,
+    FolderOpenMediumComponent,
+    CreationOptionDeckComponent,
+    CreateOptionCardComponent,
+    CardMediumComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
