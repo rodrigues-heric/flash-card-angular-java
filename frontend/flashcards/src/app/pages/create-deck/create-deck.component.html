@@ -6,6 +6,11 @@
 <div class="row">
   <div class="col">
     <div class="card text-center">
+      <span
+        *ngIf="!getFormValid()"
+        class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle"
+      >
+      </span>
       <div class="card-header header-font">Deck</div>
       <div class="card-body body-style">
         <textarea
@@ -13,6 +18,7 @@
           rows="4"
           placeholder="Digite o nome do deck"
           [formControl]="deckNameControl"
+          required
         ></textarea>
       </div>
     </div>
@@ -23,7 +29,7 @@
     <div class="position-fixed bottom-0 mb-2 ms-4 start-0">
       <icon-cross-big (click)="navigateToHome()"></icon-cross-big>
     </div>
-    <div class="position-fixed bottom-0 mb-2 me-4 end-0">
+    <div *ngIf="getFormValid()" class="position-fixed bottom-0 mb-2 me-4 end-0">
       <icon-check-big (click)="saveDeck()"></icon-check-big>
     </div>
   </div>

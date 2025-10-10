@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-create-deck',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-deck.component.scss'],
 })
 export class CreateDeckComponent {
-  private nameFC: FormControl = new FormControl('');
+  private nameFC: FormControl = new FormControl('', Validators.required);
 
   constructor(private router: Router) {}
 
@@ -24,12 +26,17 @@ export class CreateDeckComponent {
     this.nameFC.setValue(value);
   }
 
+  public getFormValid(): boolean {
+    return this.deckNameControl.valid;
+  }
+
   public navigateToHome(): void {
     this.router.navigate(['/']);
   }
 
   public saveDeck(): void {
-    // TODO: Implement save deck functionality
-    this.navigateToHome();
+    if (this.getFormValid()) {
+      //this.navigateToHome();
+    }
   }
 }
