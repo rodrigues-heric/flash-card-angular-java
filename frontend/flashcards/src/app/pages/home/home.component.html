@@ -17,15 +17,18 @@
   <div class="col">
     <div class="position-fixed bottom-0 mb-2 start-50 translate-middle-x">
       <div class="d-flex flex-column align-items-center gap-3">
-        <app-creation-option-card
-          *ngIf="getOptionsState()"
-        ></app-creation-option-card>
-        <app-creation-option-deck
-          *ngIf="getOptionsState()"
-        ></app-creation-option-deck>
+        <div @optionsAnimation *ngIf="getOptionsState()">
+          <app-creation-option-card
+            [moveState]="getMoveState()"
+          ></app-creation-option-card>
+        </div>
+        <div @optionsAnimation *ngIf="getOptionsState()">
+          <app-creation-option-deck
+            [moveState]="getMoveState()"
+          ></app-creation-option-deck>
+        </div>
         <icon-circle-plus-big
-          class="rotate-icon"
-          [class.rotated]="getOptionsState()"
+          [rotationState]="getAnimationState()"
           (click)="toggleOptionsState()"
         ></icon-circle-plus-big>
       </div>
