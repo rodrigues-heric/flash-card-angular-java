@@ -13,6 +13,8 @@ import { CreateOptionCardComponent } from './components/creation-option-card/cre
 import { CardMediumComponent } from './icons/card-medium/card-medium.component';
 import { CreateCardComponent } from './pages/create-card/create-card.component';
 import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
+import { CrossBigComponent } from './icons/cross-big/cross-big.component';
+import { CheckBigComponent } from './icons/check-big/check-big.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
     CardMediumComponent,
     CreateCardComponent,
     CreateDeckComponent,
+    CrossBigComponent,
+    CheckBigComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],

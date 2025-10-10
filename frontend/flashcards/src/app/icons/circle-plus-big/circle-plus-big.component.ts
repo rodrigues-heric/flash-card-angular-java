@@ -14,7 +14,7 @@ import {
   animations: [
     trigger('rotateState', [
       state('default', style({ transform: 'rotate(0)' })),
-      state('rotated', style({ transform: 'rotate(45deg)' })),
+      state('rotated', style({ transform: 'rotate(225deg)' })),
       transition('default <=> rotated', animate('300ms ease-in-out')),
     ]),
   ],
