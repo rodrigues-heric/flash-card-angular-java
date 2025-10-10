@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,8 @@ import { trigger, style, transition, animate } from '@angular/animations';
   ],
 })
 export class HomeComponent {
+  constructor(private router: Router) {}
+
   private isOptionsOpen = false;
 
   public getOptionsState(): boolean {
@@ -49,5 +52,13 @@ export class HomeComponent {
 
   public getMoveState(): 'default' | 'up' {
     return this.isOptionsOpen ? 'up' : 'default';
+  }
+
+  public navigateToCreateCard(): void {
+    this.router.navigate(['/create-card']);
+  }
+
+  public navigateToCreateDeck(): void {
+    this.router.navigate(['/create-deck']);
   }
 }

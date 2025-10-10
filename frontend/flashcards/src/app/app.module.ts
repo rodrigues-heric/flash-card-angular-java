@@ -11,6 +11,8 @@ import { FolderOpenMediumComponent } from './icons/folder-open-medium/folder-ope
 import { CreationOptionDeckComponent } from './components/creation-option-deck/creation-option-deck.component';
 import { CreateOptionCardComponent } from './components/creation-option-card/creation-option-card.component';
 import { CardMediumComponent } from './icons/card-medium/card-medium.component';
+import { CreateCardComponent } from './pages/create-card/create-card.component';
+import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { CardMediumComponent } from './icons/card-medium/card-medium.component';
     CreationOptionDeckComponent,
     CreateOptionCardComponent,
     CardMediumComponent,
+    CreateCardComponent,
+    CreateDeckComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],

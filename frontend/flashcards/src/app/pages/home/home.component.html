@@ -23,11 +23,13 @@
         <div @optionsAnimation *ngIf="getOptionsState()">
           <app-creation-option-card
             [moveState]="getMoveState()"
+            (click)="navigateToCreateCard()"
           ></app-creation-option-card>
         </div>
         <div @optionsAnimation *ngIf="getOptionsState()">
           <app-creation-option-deck
             [moveState]="getMoveState()"
+            (click)="navigateToCreateDeck()"
           ></app-creation-option-deck>
         </div>
         <icon-circle-plus-big
