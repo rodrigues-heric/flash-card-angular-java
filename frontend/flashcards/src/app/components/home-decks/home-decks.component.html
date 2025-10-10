@@ -1,0 +1,16 @@
+<ng-container *ngIf="hasDecks">
+  <div class="row mb-2">
+    <div class="col">Decks</div>
+  </div>
+
+  <ng-container *ngFor="let deck of decks">
+    <div class="row">
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-header header-font">{{ deck.name }}</div>
+          <div class="card-body body-style">Oiê</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

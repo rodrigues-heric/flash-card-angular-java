@@ -3,17 +3,12 @@
     <app-title [inputTitle]="'Flashcards'"></app-title>
   </div>
 </div>
-<div class="row text-center mb-2" *ngIf="!hasDecks">
-  <div class="col">
-    <span>Não foram encontrados flashcards ou decks.</span>
-  </div>
-</div>
-<div class="row text-center mb-2" *ngIf="!hasDecks">
-  <div class="col">
-    <span>Para criar um flashcard ou deck utilize o botão abaixo.</span>
-  </div>
-</div>
+
+<app-home-info [hasDecks]="hasDecks"></app-home-info>
+<app-home-decks [hasDecks]="hasDecks" [decks]="decks"></app-home-decks>
+
 <div class="backdrop" *ngIf="optionsState"></div>
+
 <div class="row">
   <div class="col">
     <div

@@ -19,6 +19,8 @@ import { CrossBigComponent } from './icons/cross-big/cross-big.component';
 import { CheckBigComponent } from './icons/check-big/check-big.component';
 import { PlusBigComponent } from './icons/plus-big/plus-big.component';
 import { EqualsBigComponent } from './icons/equals-big/equals-big.component';
+import { HomeInfoComponent } from './components/home-info/home-info.component';
+import { HomeDecksComponent } from './components/home-decks/home-decks.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { EqualsBigComponent } from './icons/equals-big/equals-big.component';
     CheckBigComponent,
     PlusBigComponent,
     EqualsBigComponent,
+    HomeInfoComponent,
+    HomeDecksComponent,
   ],
   imports: [
     BrowserModule,
