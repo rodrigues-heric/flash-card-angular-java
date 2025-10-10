@@ -13,9 +13,12 @@
     <span>Para criar um flashcard ou deck, utilize o botão abaixo.</span>
   </div>
 </div>
+<div class="backdrop" *ngIf="getOptionsState()"></div>
 <div class="row">
   <div class="col">
-    <div class="position-fixed bottom-0 mb-2 start-50 translate-middle-x">
+    <div
+      class="position-fixed bottom-0 mb-2 start-50 translate-middle-x menu-container"
+    >
       <div class="d-flex flex-column align-items-center gap-3">
         <div @optionsAnimation *ngIf="getOptionsState()">
           <app-creation-option-card
