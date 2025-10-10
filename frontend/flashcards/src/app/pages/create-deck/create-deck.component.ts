@@ -12,4 +12,9 @@ export class CreateDeckComponent {
   public navigateToHome(): void {
     this.router.navigate(['/']);
   }
+
+  public saveDeck(): void {
+    // TODO: Implement save deck functionality
+    this.navigateToHome();
+  }
 }
