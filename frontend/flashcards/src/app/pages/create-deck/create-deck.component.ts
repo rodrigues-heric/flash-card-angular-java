@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-declare var bootstrap: any;
+import { DecksService } from 'src/app/services/decks.service';
 
 @Component({
   selector: 'app-create-deck',
@@ -12,7 +11,7 @@ declare var bootstrap: any;
 export class CreateDeckComponent {
   private nameFC: FormControl = new FormControl('', Validators.required);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private decksService: DecksService) {}
 
   get deckNameControl(): FormControl {
     return this.nameFC;
@@ -36,7 +35,8 @@ export class CreateDeckComponent {
 
   public saveDeck(): void {
     if (this.getFormValid()) {
-      //this.navigateToHome();
+      this.decksService.saveDeck(this.deckName);
+      this.navigateToHome();
     }
   }
 }

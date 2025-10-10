@@ -1,4 +1,4 @@
-package rodrigues.leite.heric.flashcards.Folders.Model;
+package rodrigues.leite.heric.flashcards.Decks.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_folders")
+@Table(name = "tb_decks")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FolderModel {
+public class DecksModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +26,8 @@ public class FolderModel {
 
     @ManyToMany
     @JoinTable(
-            name = "tb_folder_cards",
-            joinColumns = @JoinColumn(name = "id_folder"),
+            name = "tb_decks_cards",
+            joinColumns = @JoinColumn(name = "id_deck"),
             inverseJoinColumns = @JoinColumn(name = "id_card")
     )
     private Set<FlashcardModel> flashcards = new HashSet<>();

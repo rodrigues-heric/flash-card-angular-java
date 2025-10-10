@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rodrigues.leite.heric.flashcards.Folders.Model.FolderModel;
+import rodrigues.leite.heric.flashcards.Decks.Model.DecksModel;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,5 +31,5 @@ public class FlashcardModel {
     private String optionalHint;
 
     @ManyToMany(mappedBy = "flashcards")
-    private Set<FolderModel> folders = new HashSet<>();
+    private Set<DecksModel> folders = new HashSet<>();
 }
