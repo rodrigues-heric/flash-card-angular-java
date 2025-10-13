@@ -27,9 +27,6 @@ public class FlashcardModel {
     @Column(name = "back_text", nullable = false)
     private String backText;
 
-    @Column(name = "optional_hint")
-    private String optionalHint;
-
     @ManyToMany(mappedBy = "flashcards")
-    private Set<DecksModel> folders = new HashSet<>();
+    private Set<DecksModel> decks = new HashSet<>();
 }

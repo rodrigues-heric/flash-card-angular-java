@@ -12,7 +12,7 @@
           class="form-control"
           rows="4"
           placeholder="Digite o texto da frente do flashcard..."
-          [(ngModel)]="frontTextValue"
+          [formControl]="frontControl"
         ></textarea>
       </div>
     </div>
@@ -32,7 +32,7 @@
           class="form-control"
           rows="4"
           placeholder="Digite o texto do verso do flashcard..."
-          [(ngModel)]="backTextValue"
+          [formControl]="backControl"
         ></textarea>
       </div>
     </div>
@@ -51,7 +51,7 @@
           <div class="card text-center h-100">
             <div class="card-header header-font">Frente</div>
             <div class="card-body body-style">
-              {{ frontTextValue || "Frente do card" }}
+              {{ frontFCValue || "Frente do card" }}
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <div class="card text-center h-100">
             <div class="card-header header-font">Verso</div>
             <div class="card-body body-style">
-              {{ backTextValue || "Verso do card" }}
+              {{ backFCValue || "Verso do card" }}
             </div>
           </div>
         </div>

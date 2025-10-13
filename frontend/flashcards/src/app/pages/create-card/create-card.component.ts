@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CardsService, ICardPost } from 'src/app/services/cards.service';
 
 const TIME_TO_FLIP = 1500;
 
@@ -10,30 +12,30 @@ const TIME_TO_FLIP = 1500;
 })
 export class CreateCardComponent implements OnInit, OnDestroy {
   private isFlipped = false;
-  private frontText = '';
-  private backText = '';
   private flipInterval: any;
+  private frontFC: FormControl = new FormControl('', [Validators.required]);
+  private backFC: FormControl = new FormControl('', [Validators.required]);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cardsService: CardsService) {}
 
   get flipped(): boolean {
     return this.isFlipped;
   }
 
-  get frontTextValue(): string {
-    return this.frontText;
+  get frontControl(): FormControl {
+    return this.frontFC;
   }
 
-  set frontTextValue(value: string) {
-    this.frontText = value;
+  get frontFCValue(): string {
+    return this.frontFC.value;
   }
 
-  get backTextValue(): string {
-    return this.backText;
+  get backControl(): FormControl {
+    return this.backFC;
   }
 
-  set backTextValue(value: string) {
-    this.backText = value;
+  get backFCValue(): string {
+    return this.backFC.value;
   }
 
   ngOnInit(): void {
@@ -61,7 +63,30 @@ export class CreateCardComponent implements OnInit, OnDestroy {
   }
 
   public saveFlashcard(): void {
-    // TODO: Implement save flashcard functionality
-    this.navigateToHome();
+    if (this.getFormsValid()) {
+      const newCard: ICardPost = {
+        faceText: this.frontFCValue,
+        backText: this.backFCValue,
+      };
+
+      this.cardsService.saveCard(newCard).subscribe({
+        next: () => this.navigateToHome(),
+        error: (error) => {
+          console.error('Error saving card:', error);
+        },
+      });
+    }
+  }
+
+  public getFrontFormValid(): boolean {
+    return this.frontControl.valid;
+  }
+
+  public getBackFormValid(): boolean {
+    return this.backControl.valid;
+  }
+
+  public getFormsValid(): boolean {
+    return this.getFrontFormValid() && this.getBackFormValid();
   }
 }
