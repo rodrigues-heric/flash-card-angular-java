@@ -21,6 +21,7 @@ import { PlusBigComponent } from './icons/plus-big/plus-big.component';
 import { EqualsBigComponent } from './icons/equals-big/equals-big.component';
 import { HomeInfoComponent } from './components/home-info/home-info.component';
 import { HomeDecksComponent } from './components/home-decks/home-decks.component';
+import { HomeCardsComponent } from './components/home-cards/home-cards.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HomeDecksComponent } from './components/home-decks/home-decks.component
     EqualsBigComponent,
     HomeInfoComponent,
     HomeDecksComponent,
+    HomeCardsComponent,
   ],
   imports: [
     BrowserModule,

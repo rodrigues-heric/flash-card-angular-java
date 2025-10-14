@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { DecksService, IDeck } from 'src/app/services/decks.service';
+import { CardsService, ICard } from 'src/app/services/cards.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -37,16 +39,25 @@ import { DecksService, IDeck } from 'src/app/services/decks.service';
 export class HomeComponent implements OnInit {
   private isOptionsOpen = false;
   private allDecks: IDeck[] = [];
+  private allCards: ICard[] = [];
 
-  constructor(private router: Router, private decksService: DecksService) {}
+  constructor(
+    private router: Router,
+    private decksService: DecksService,
+    private cardsService: CardsService
+  ) {}
 
   ngOnInit(): void {
-    this.decksService.getAllDecks().subscribe({
-      next: (decks: IDeck[]) => {
+    combineLatest([
+      this.decksService.getAllDecks(),
+      this.cardsService.getAllCards(),
+    ]).subscribe({
+      next: ([decks, cards]: [IDeck[], ICard[]]) => {
         this.decks = decks;
+        this.cards = cards;
       },
       error: (error) => {
-        console.error('Error fetching decks:', error);
+        console.error('Error fetching decks or cards:', error);
       },
     });
   }
@@ -63,12 +74,24 @@ export class HomeComponent implements OnInit {
     this.allDecks = decks;
   }
 
+  get cards(): ICard[] {
+    return this.allCards;
+  }
+
+  set cards(cards: ICard[]) {
+    this.allCards = cards;
+  }
+
   get isDownloading(): boolean {
-    return this.decksService.downloading;
+    return this.decksService.downloading || this.cardsService.downloading;
   }
 
   get hasDecks(): boolean {
     return this.decks.length > 0;
+  }
+
+  get hasCards(): boolean {
+    return this.cards.length > 0;
   }
 
   public toggleOptionsState(): void {

@@ -4,8 +4,9 @@
   </div>
 </div>
 
-<app-home-info [hasDecks]="hasDecks"></app-home-info>
+<app-home-info [hasDecks]="hasDecks" [hasCards]="hasCards"></app-home-info>
 <app-home-decks [hasDecks]="hasDecks" [decks]="decks"></app-home-decks>
+<app-home-cards [hasCards]="hasCards" [cards]="cards"></app-home-cards>
 
 <div class="backdrop" *ngIf="optionsState"></div>
 

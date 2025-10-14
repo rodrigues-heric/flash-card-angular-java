@@ -1,0 +1,16 @@
+<ng-container *ngIf="hasCards">
+  <div class="row mb-2">
+    <div class="col">Flashcards</div>
+  </div>
+
+  <ng-container *ngFor="let card of cards">
+    <div class="row mb-2">
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-header header-font">Frente</div>
+          <div class="card-body body-style">{{ card.faceText }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
