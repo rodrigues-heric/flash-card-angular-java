@@ -12,7 +12,7 @@ const TIME_TO_FLIP = 1500;
 })
 export class CreateCardComponent implements OnInit, OnDestroy {
   private isFlipped = false;
-  private flipInterval: any;
+  private flipInterval!: any;
   private frontFC: FormControl = new FormControl('', [Validators.required]);
   private backFC: FormControl = new FormControl('', [Validators.required]);
 
