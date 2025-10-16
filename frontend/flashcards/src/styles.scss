@@ -1,0 +1,17 @@
+:root {
+  --light-theme-bg-color: #eeeedd;
+  --light-theme-accent-color: #333333;
+}
+
+html,
+body {
+  background-color: var(--light-theme-bg-color);
+  --bs-body-bg: var(--light-theme-bg-color);
+  color: var(--light-theme-accent-color);
+  --bs-body-color: var(--light-theme-accent-color);
+  font-family: "IBM Plex Mono", monospace;
+  --bs-body-font-family: "IBM Plex Mono", monospace;
+  font-weight: bold;
+  --bs-body-font-weight: bold;
+  margin: 10px;
+}

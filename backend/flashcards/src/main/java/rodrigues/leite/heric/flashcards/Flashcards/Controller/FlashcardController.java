@@ -21,6 +21,11 @@ public class FlashcardController {
         return ResponseEntity.ok(this.flashcardService.saveFlashcard(flashcard));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Iterable<FlashcardModel>> getAllFlashcards() {
+        return ResponseEntity.ok(this.flashcardService.getAllFlashcards());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Optional<FlashcardModel>> getFlashcardById(@PathVariable Long id) {
         return ResponseEntity.ok(this.flashcardService.getFlashcardById(id));

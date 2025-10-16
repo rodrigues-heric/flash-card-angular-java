@@ -17,6 +17,10 @@ public class FlashcardService {
         return this.flashcardRepository.save(flashcard);
     }
 
+    public Iterable<FlashcardModel> getAllFlashcards() {
+        return this.flashcardRepository.findAll();
+    }
+
     public Optional<FlashcardModel> getFlashcardById(Long id) {
         return this.flashcardRepository.findById(id);
     }
@@ -28,7 +32,6 @@ public class FlashcardService {
             FlashcardModel existingFlashcard = existingFlashcardOptional.get();
             existingFlashcard.setFaceText(flashcard.getFaceText());
             existingFlashcard.setBackText(flashcard.getBackText());
-            existingFlashcard.setOptionalHint(flashcard.getOptionalHint());
 
             return Optional.of(this.saveFlashcard(existingFlashcard));
         }
