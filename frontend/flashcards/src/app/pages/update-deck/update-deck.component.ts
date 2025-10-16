@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DecksService } from 'src/app/services/decks.service';
+import { DecksService, IDeck } from 'src/app/services/decks.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-deck',
   templateUrl: './update-deck.component.html',
   styleUrls: ['./update-deck.component.scss'],
 })
-export class UpdateDeckComponent implements OnInit {
+export class UpdateDeckComponent implements OnInit, OnDestroy {
   private nameFC: FormControl = new FormControl('', Validators.required);
   private deckId: number = -1;
+  private routeParamsSub!: Subscription;
 
   constructor(
     private router: Router,
@@ -19,10 +21,16 @@ export class UpdateDeckComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.routeParamsSub = this.route.params.subscribe((params) => {
       this.deckIdValue = Number(params['id']);
       this.deckName = params['name'];
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeParamsSub) {
+      this.routeParamsSub.unsubscribe();
+    }
   }
 
   get deckNameControl(): FormControl {
@@ -53,12 +61,17 @@ export class UpdateDeckComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  public saveDeck(): void {
+  public updateDeck(): void {
     if (this.getFormValid()) {
-      this.decksService.saveDeck(this.deckName).subscribe({
+      const deck: IDeck = {
+        id: this.deckIdValue,
+        name: this.deckName,
+      };
+
+      this.decksService.updateDeck(deck).subscribe({
         next: () => this.navigateToHome(),
         error: (error) => {
-          console.error('Error saving deck:', error);
+          console.error('Error updating deck:', error);
         },
       });
     }

@@ -51,4 +51,18 @@ export class DecksService {
       })
     );
   }
+
+  public updateDeck(deck: IDeck): Observable<any> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${deck.id}`;
+
+    return this.http.put(url, deck).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error updating deck:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
 }
