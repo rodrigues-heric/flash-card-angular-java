@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'create-card', component: CreateCardComponent },
   {
-    path: 'update-card/:id/:frontText/:backText',
+    path: 'update-card/:id',
     component: UpdateCardComponent,
   },
   { path: 'create-deck', component: CreateDeckComponent },

@@ -32,6 +32,20 @@ export class CardsService {
     this.isDownloading = value;
   }
 
+  public getCard(id: number): Observable<ICard> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${id}`;
+
+    return this.http.get<ICard>(url).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error fetching card:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
+
   public getAllCards(): Observable<ICard[]> {
     this.downloading = true;
     const url: string = this.API_URL + '/all';

@@ -28,11 +28,30 @@ export class UpdateCardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.startFlipping();
 
-    this.routeParamsSub = this.route.params.subscribe((params) => {
-      this.cardIdValue = Number(params['id']);
-      this.frontFC.setValue(params['frontText']);
-      this.backFC.setValue(params['backText']);
-    });
+    const navigation = this.router.getCurrentNavigation();
+    const cardData = navigation?.extras?.state?.['cardData'] as ICard;
+
+    if (cardData) {
+      this.cardIdValue = cardData.id;
+      this.frontFCValue = cardData.faceText;
+      this.backFCValue = cardData.backText;
+    } else {
+      this.routeParamsSub = this.route.params.subscribe((params) => {
+        const cardId = Number(params['id']);
+
+        this.cardsService.getCard(cardId).subscribe({
+          next: (card) => {
+            this.cardIdValue = card.id;
+            this.frontFCValue = card.faceText;
+            this.backFCValue = card.backText;
+          },
+          error: (error) => {
+            console.error('Error fetching card:', error);
+            this.navigateToHome();
+          },
+        });
+      });
+    }
   }
 
   ngOnDestroy(): void {
@@ -65,12 +84,20 @@ export class UpdateCardComponent implements OnInit, OnDestroy {
     return this.frontFC.value;
   }
 
+  set frontFCValue(value: string) {
+    this.frontFC.setValue(value);
+  }
+
   get backControl(): FormControl {
     return this.backFC;
   }
 
   get backFCValue(): string {
     return this.backFC.value;
+  }
+
+  set backFCValue(value: string) {
+    this.backFC.setValue(value);
   }
 
   private startFlipping(): void {
