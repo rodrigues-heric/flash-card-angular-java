@@ -22,6 +22,7 @@ import { EqualsBigComponent } from './icons/equals-big/equals-big.component';
 import { HomeInfoComponent } from './components/home-info/home-info.component';
 import { HomeDecksComponent } from './components/home-decks/home-decks.component';
 import { HomeCardsComponent } from './components/home-cards/home-cards.component';
+import { CircleArrowRightSmallComponent } from './icons/circle-arrow-right-small/circle-arrow-right-small.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HomeCardsComponent } from './components/home-cards/home-cards.component
     HomeInfoComponent,
     HomeDecksComponent,
     HomeCardsComponent,
+    CircleArrowRightSmallComponent,
   ],
   imports: [
     BrowserModule,

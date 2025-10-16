@@ -7,8 +7,21 @@
     <div class="row mb-2">
       <div class="col">
         <div class="card text-center">
-          <div class="card-header header-font">{{ deck.name }}</div>
-          <div class="card-body body-style">Oiê</div>
+          <div class="card-header header-font">
+            <div class="row">
+              <div class="col">
+                <icon-folder-open-medium
+                  class="float-start"
+                ></icon-folder-open-medium>
+              </div>
+              <div class="col">{{ deck.name }}</div>
+              <div class="col">
+                <icon-circle-arrow-right-small
+                  class="float-end"
+                ></icon-circle-arrow-right-small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
