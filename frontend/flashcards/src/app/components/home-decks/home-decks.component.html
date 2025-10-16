@@ -10,7 +10,10 @@
           <div class="card-header header-font">
             <div class="row">
               <div class="col">
-                <icon-pencil-small class="float-start"></icon-pencil-small>
+                <icon-pencil-small
+                  [routerLink]="['/update-deck', deck.id, deck.name]"
+                  class="float-start"
+                ></icon-pencil-small>
               </div>
               <div class="col">{{ deck.name }}</div>
               <div class="col">
