@@ -23,6 +23,7 @@ import { HomeInfoComponent } from './components/home-info/home-info.component';
 import { HomeDecksComponent } from './components/home-decks/home-decks.component';
 import { HomeCardsComponent } from './components/home-cards/home-cards.component';
 import { CircleArrowRightSmallComponent } from './icons/circle-arrow-right-small/circle-arrow-right-small.component';
+import { PencilSmallComponent } from './icons/pencil-small/pencil-small.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CircleArrowRightSmallComponent } from './icons/circle-arrow-right-small
     HomeDecksComponent,
     HomeCardsComponent,
     CircleArrowRightSmallComponent,
+    PencilSmallComponent,
   ],
   imports: [
     BrowserModule,
