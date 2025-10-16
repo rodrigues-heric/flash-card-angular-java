@@ -59,4 +59,18 @@ export class CardsService {
       })
     );
   }
+
+  public updateCard(card: ICard): Observable<any> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${card.id}`;
+
+    return this.http.put(url, card).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error updating card:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
 }

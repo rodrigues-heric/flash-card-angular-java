@@ -4,11 +4,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { CreateCardComponent } from './pages/create-card/create-card.component';
 import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
+import { UpdateCardComponent } from './pages/update-card/update-card.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'create-card', component: CreateCardComponent },
+  {
+    path: 'update-card/:id/:frontText/:backText',
+    component: UpdateCardComponent,
+  },
   { path: 'create-deck', component: CreateDeckComponent },
   { path: 'update-deck/:id/:name', component: UpdateDeckComponent },
 ];
