@@ -1,0 +1,46 @@
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DecksService } from 'src/app/services/decks.service';
+
+@Component({
+  selector: 'app-create-deck',
+  templateUrl: './create-deck.component.html',
+  styleUrls: ['./create-deck.component.scss'],
+})
+export class CreateDeckComponent {
+  private nameFC: FormControl = new FormControl('', Validators.required);
+
+  constructor(private router: Router, private decksService: DecksService) {}
+
+  get deckNameControl(): FormControl {
+    return this.nameFC;
+  }
+
+  get deckName(): string {
+    return this.nameFC.value;
+  }
+
+  set deckName(value: string) {
+    this.nameFC.setValue(value);
+  }
+
+  public getFormValid(): boolean {
+    return this.deckNameControl.valid;
+  }
+
+  public navigateToHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  public saveDeck(): void {
+    if (this.getFormValid()) {
+      this.decksService.saveDeck(this.deckName).subscribe({
+        next: () => this.navigateToHome(),
+        error: (error) => {
+          console.error('Error saving deck:', error);
+        },
+      });
+    }
+  }
+}
