@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { DecksService, IDeck } from 'src/app/services/decks.service';
 import { CardsService, ICard } from 'src/app/services/cards.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -36,10 +36,11 @@ import { combineLatest } from 'rxjs';
     ]),
   ],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private isOptionsOpen = false;
   private allDecks: IDeck[] = [];
   private allCards: ICard[] = [];
+  private combinedSubscription: Subscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -48,7 +49,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([
+    this.combinedSubscription = combineLatest([
       this.decksService.getAllDecks(),
       this.cardsService.getAllCards(),
     ]).subscribe({
@@ -60,6 +61,10 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching decks or cards:', error);
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.combinedSubscription.unsubscribe();
   }
 
   get optionsState(): boolean {
