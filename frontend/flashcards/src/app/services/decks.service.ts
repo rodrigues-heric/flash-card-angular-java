@@ -24,6 +24,20 @@ export class DecksService {
     this.isDownloading = value;
   }
 
+  public getDeck(id: number): Observable<IDeck> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${id}`;
+
+    return this.http.get<IDeck>(url).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error fetching deck:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
+
   public getAllDecks(): Observable<IDeck[]> {
     this.downloading = true;
     const url: string = this.API_URL + '/all';

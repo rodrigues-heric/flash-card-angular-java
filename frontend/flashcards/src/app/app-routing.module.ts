@@ -15,7 +15,7 @@ const routes: Routes = [
     component: UpdateCardComponent,
   },
   { path: 'create-deck', component: CreateDeckComponent },
-  { path: 'update-deck/:id/:name', component: UpdateDeckComponent },
+  { path: 'update-deck/:id', component: UpdateDeckComponent },
 ];
 
 @NgModule({

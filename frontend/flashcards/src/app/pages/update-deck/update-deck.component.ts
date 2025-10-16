@@ -21,10 +21,28 @@ export class UpdateDeckComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.routeParamsSub = this.route.params.subscribe((params) => {
-      this.deckIdValue = Number(params['id']);
-      this.deckName = params['name'];
-    });
+    const navigation = this.router.getCurrentNavigation();
+    const deckData = navigation?.extras?.state?.['deckData'] as IDeck;
+
+    if (deckData) {
+      this.deckIdValue = deckData.id;
+      this.deckName = deckData.name;
+    } else {
+      this.routeParamsSub = this.route.params.subscribe((params) => {
+        const deckId = Number(params['id']);
+
+        this.decksService.getDeck(deckId).subscribe({
+          next: (deck) => {
+            this.deckIdValue = deck.id;
+            this.deckName = deck.name;
+          },
+          error: (error) => {
+            console.error('Error fetching deck:', error);
+            this.navigateToHome();
+          },
+        });
+      });
+    }
   }
 
   ngOnDestroy(): void {
