@@ -37,7 +37,8 @@ import { combineLatest, Subscription } from 'rxjs';
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private isOptionsOpen = false;
+  private isOptionsOpen: boolean = false;
+  private isRemoveSelected: boolean = false;
   private allDecks: IDeck[] = [];
   private allCards: ICard[] = [];
   private combinedSubscription: Subscription = new Subscription();
@@ -71,6 +72,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.isOptionsOpen;
   }
 
+  get isRemoveOption(): boolean {
+    return this.isRemoveSelected;
+  }
+
   get decks(): IDeck[] {
     return this.allDecks;
   }
@@ -101,6 +106,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public toggleOptionsState(): void {
     this.isOptionsOpen = !this.isOptionsOpen;
+  }
+
+  public toggleRemoveOption(): void {
+    this.isRemoveSelected = !this.isRemoveSelected;
   }
 
   public getAnimationState(): 'default' | 'rotated' {
