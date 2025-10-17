@@ -79,4 +79,18 @@ export class DecksService {
       })
     );
   }
+
+  public deleteDeck(id: number): Observable<any> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${id}`;
+
+    return this.http.delete(url).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error deleting deck:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
 }

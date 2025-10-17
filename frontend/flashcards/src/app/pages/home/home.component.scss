@@ -14,3 +14,13 @@
 .menu-container {
   z-index: 1001;
 }
+
+.edit-remove-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-remove-button > icon-trash-medium,
+icon-pencil-small {
+  margin-left: auto;
+}

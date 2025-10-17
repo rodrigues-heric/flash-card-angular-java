@@ -37,7 +37,8 @@ import { combineLatest, Subscription } from 'rxjs';
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private isOptionsOpen = false;
+  private isOptionsOpen: boolean = false;
+  private isRemoveSelected: boolean = false;
   private allDecks: IDeck[] = [];
   private allCards: ICard[] = [];
   private combinedSubscription: Subscription = new Subscription();
@@ -69,6 +70,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   get optionsState(): boolean {
     return this.isOptionsOpen;
+  }
+
+  get isRemoveOption(): boolean {
+    return this.isRemoveSelected;
   }
 
   get decks(): IDeck[] {
@@ -103,6 +108,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isOptionsOpen = !this.isOptionsOpen;
   }
 
+  public toggleRemoveOption(): void {
+    this.isRemoveSelected = !this.isRemoveSelected;
+  }
+
   public getAnimationState(): 'default' | 'rotated' {
     return this.isOptionsOpen ? 'rotated' : 'default';
   }
@@ -117,5 +126,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public navigateToCreateDeck(): void {
     this.router.navigate(['/create-deck']);
+  }
+
+  public removeFromDeck(id: number): void {
+    this.decks = this.decks.filter((deck) => deck.id !== id);
+  }
+
+  public removeFromCards(id: number): void {
+    this.cards = this.cards.filter((card) => card.id !== id);
+  }
+
+  public haveDecksOrCards(): boolean {
+    return this.hasDecks || this.hasCards;
   }
 }

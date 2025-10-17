@@ -11,9 +11,15 @@
             <div class="row">
               <div class="col">
                 <icon-pencil-small
+                  *ngIf="!isRemoveOption"
                   (click)="navigateToUpdateCard(card)"
                   class="float-start"
                 ></icon-pencil-small>
+                <icon-trash-medium
+                  *ngIf="isRemoveOption"
+                  (click)="onRemoveCard(card.id)"
+                  class="float-start"
+                ></icon-trash-medium>
               </div>
               <div class="col">{{ card.faceText }}</div>
               <div class="col">
