@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col">
+    <app-title [inputTitle]="'Editar card'"></app-title>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card text-center">
+      <span
+        *ngIf="!getFrontFormValid()"
+        class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle"
+      >
+      </span>
+      <div class="card-header header-font">Frente</div>
+      <div class="card-body body-style">
+        <textarea
+          class="form-control"
+          rows="4"
+          placeholder="Digite o texto da frente do flashcard..."
+          [formControl]="frontControl"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-center">
+    <icon-plus-big></icon-plus-big>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card text-center">
+      <span
+        *ngIf="!getBackFormValid()"
+        class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle"
+      >
+      </span>
+      <div class="card-header header-font">Verso</div>
+      <div class="card-body body-style">
+        <textarea
+          class="form-control"
+          rows="4"
+          placeholder="Digite o texto do verso do flashcard..."
+          [formControl]="backControl"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-center">
+    <icon-equals-big></icon-equals-big>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="flip-card" [class.flipped]="flipped">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card text-center h-100">
+            <div class="card-header header-font">Frente</div>
+            <div class="card-body body-style">
+              {{ frontFCValue }}
+            </div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card text-center h-100">
+            <div class="card-header header-font">Verso</div>
+            <div class="card-body body-style">
+              {{ backFCValue }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="position-fixed bottom-0 mb-2 ms-4 start-0">
+      <icon-cross-big (click)="navigateToHome()"></icon-cross-big>
+    </div>
+    <div
+      *ngIf="getFormsValid()"
+      class="position-fixed bottom-0 mb-2 me-4 end-0"
+    >
+      <icon-check-big (click)="updateFlashcard()"></icon-check-big>
+    </div>
+  </div>
+</div>

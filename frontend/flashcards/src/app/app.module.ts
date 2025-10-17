@@ -24,6 +24,8 @@ import { HomeDecksComponent } from './components/home-decks/home-decks.component
 import { HomeCardsComponent } from './components/home-cards/home-cards.component';
 import { CircleArrowRightSmallComponent } from './icons/circle-arrow-right-small/circle-arrow-right-small.component';
 import { PencilSmallComponent } from './icons/pencil-small/pencil-small.component';
+import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
+import { UpdateCardComponent } from './pages/update-card/update-card.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { PencilSmallComponent } from './icons/pencil-small/pencil-small.componen
     HomeCardsComponent,
     CircleArrowRightSmallComponent,
     PencilSmallComponent,
+    UpdateDeckComponent,
+    UpdateCardComponent,
   ],
   imports: [
     BrowserModule,
