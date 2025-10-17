@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CardsService, ICard } from 'src/app/services/cards.service';
 
@@ -12,6 +12,8 @@ export class HomeCardsComponent {
   @Input() cards: ICard[] = [];
   @Input() isRemoveOption: boolean = false;
 
+  @Output() cardToRemove: EventEmitter<number> = new EventEmitter<number>();
+
   constructor(private router: Router, private cardsService: CardsService) {}
 
   public navigateToUpdateCard(card: ICard): void {
@@ -24,6 +26,7 @@ export class HomeCardsComponent {
     this.cardsService.deleteCard(id).subscribe({
       next: () => {
         this.cards = this.cards.filter((card) => card.id !== id);
+        this.cardToRemove.emit(id);
       },
       error: (err) => {
         console.error('Error deleting card:', err);

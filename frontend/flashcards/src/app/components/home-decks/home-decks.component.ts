@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecksService, IDeck } from 'src/app/services/decks.service';
 
@@ -12,6 +12,8 @@ export class HomeDecksComponent {
   @Input() decks: IDeck[] = [];
   @Input() isRemoveOption: boolean = false;
 
+  @Output() deckToRemove: EventEmitter<number> = new EventEmitter<number>();
+
   constructor(private router: Router, private decksService: DecksService) {}
 
   public navigateToUpdateDeck(deck: IDeck): void {
@@ -24,6 +26,7 @@ export class HomeDecksComponent {
     this.decksService.deleteDeck(id).subscribe({
       next: () => {
         this.decks = this.decks.filter((deck) => deck.id !== id);
+        this.deckToRemove.emit(id);
       },
       error: (err) => {
         console.error('Error deleting deck:', err);

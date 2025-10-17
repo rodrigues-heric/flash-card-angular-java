@@ -127,4 +127,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   public navigateToCreateDeck(): void {
     this.router.navigate(['/create-deck']);
   }
+
+  public removeFromDeck(id: number): void {
+    this.decks = this.decks.filter((deck) => deck.id !== id);
+  }
+
+  public removeFromCards(id: number): void {
+    this.cards = this.cards.filter((card) => card.id !== id);
+  }
+
+  public haveDecksOrCards(): boolean {
+    return this.hasDecks || this.hasCards;
+  }
 }

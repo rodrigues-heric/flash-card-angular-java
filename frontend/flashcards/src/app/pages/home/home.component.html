@@ -4,14 +4,16 @@
     <app-title [inputTitle]="'Flashcards'"></app-title>
   </div>
   <div class="col">
-    <icon-trash-medium
-      *ngIf="!isRemoveOption"
-      (click)="toggleRemoveOption()"
-    ></icon-trash-medium>
-    <icon-pencil-small
-      *ngIf="isRemoveOption"
-      (click)="toggleRemoveOption()"
-    ></icon-pencil-small>
+    <ng-container *ngIf="haveDecksOrCards()">
+      <icon-trash-medium
+        *ngIf="!isRemoveOption"
+        (click)="toggleRemoveOption()"
+      ></icon-trash-medium>
+      <icon-pencil-small
+        *ngIf="isRemoveOption"
+        (click)="toggleRemoveOption()"
+      ></icon-pencil-small>
+    </ng-container>
   </div>
 </div>
 
@@ -20,11 +22,13 @@
   [hasDecks]="hasDecks"
   [decks]="decks"
   [isRemoveOption]="isRemoveOption"
+  (deckToRemove)="removeFromDeck($event)"
 ></app-home-decks>
 <app-home-cards
   [hasCards]="hasCards"
   [cards]="cards"
   [isRemoveOption]="isRemoveOption"
+  (cardToRemove)="removeFromCards($event)"
 ></app-home-cards>
 
 <div class="backdrop" *ngIf="optionsState"></div>
