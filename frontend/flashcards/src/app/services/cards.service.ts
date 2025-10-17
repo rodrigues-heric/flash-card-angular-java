@@ -32,6 +32,20 @@ export class CardsService {
     this.isDownloading = value;
   }
 
+  public getCard(id: number): Observable<ICard> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${id}`;
+
+    return this.http.get<ICard>(url).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error fetching card:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
+
   public getAllCards(): Observable<ICard[]> {
     this.downloading = true;
     const url: string = this.API_URL + '/all';
@@ -54,6 +68,20 @@ export class CardsService {
       tap(() => (this.downloading = false)),
       catchError((error) => {
         console.error('Error saving card:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
+
+  public updateCard(card: ICard): Observable<any> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${card.id}`;
+
+    return this.http.put(url, card).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error updating card:', error);
         this.downloading = false;
         throw error;
       })

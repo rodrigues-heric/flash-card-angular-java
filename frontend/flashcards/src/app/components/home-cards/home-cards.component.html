@@ -10,11 +10,14 @@
           <div class="card-body body-style">
             <div class="row">
               <div class="col">
-                <icon-card-medium class="float-start"></icon-card-medium>
+                <icon-pencil-small
+                  (click)="navigateToUpdateCard(card)"
+                  class="float-start"
+                ></icon-pencil-small>
               </div>
               <div class="col">{{ card.faceText }}</div>
               <div class="col">
-                <icon-pencil-small class="float-end"></icon-pencil-small>
+                <icon-card-medium class="float-end"></icon-card-medium>
               </div>
             </div>
           </div>
