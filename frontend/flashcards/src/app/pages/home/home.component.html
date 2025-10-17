@@ -3,15 +3,17 @@
   <div class="col">
     <app-title [inputTitle]="'Flashcards'"></app-title>
   </div>
-  <div class="col">
+  <div class="col edit-remove-button">
     <ng-container *ngIf="haveDecksOrCards()">
       <icon-trash-medium
         *ngIf="!isRemoveOption"
         (click)="toggleRemoveOption()"
+        class="mb-3"
       ></icon-trash-medium>
       <icon-pencil-small
         *ngIf="isRemoveOption"
         (click)="toggleRemoveOption()"
+        class="mb-3"
       ></icon-pencil-small>
     </ng-container>
   </div>
