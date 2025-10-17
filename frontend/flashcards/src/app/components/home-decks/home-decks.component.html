@@ -11,9 +11,15 @@
             <div class="row">
               <div class="col">
                 <icon-pencil-small
+                  *ngIf="!isRemoveOption"
                   (click)="navigateToUpdateDeck(deck)"
                   class="float-start"
                 ></icon-pencil-small>
+                <icon-trash-medium
+                  *ngIf="isRemoveOption"
+                  (click)="onRemoveDeck(deck.id)"
+                  class="float-start"
+                ></icon-trash-medium>
               </div>
               <div class="col">{{ deck.name }}</div>
               <div class="col">

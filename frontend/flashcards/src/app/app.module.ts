@@ -26,6 +26,7 @@ import { CircleArrowRightSmallComponent } from './icons/circle-arrow-right-small
 import { PencilSmallComponent } from './icons/pencil-small/pencil-small.component';
 import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
 import { UpdateCardComponent } from './pages/update-card/update-card.component';
+import { TrashMediumComponent } from './icons/trash-medium/trash-medium.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { UpdateCardComponent } from './pages/update-card/update-card.component';
     PencilSmallComponent,
     UpdateDeckComponent,
     UpdateCardComponent,
+    TrashMediumComponent,
   ],
   imports: [
     BrowserModule,

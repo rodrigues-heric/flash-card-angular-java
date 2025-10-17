@@ -87,4 +87,18 @@ export class CardsService {
       })
     );
   }
+
+  public deleteCard(id: number): Observable<any> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/${id}`;
+
+    return this.http.delete(url).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error deleting card:', error);
+        this.downloading = false;
+        throw error;
+      })
+    );
+  }
 }
