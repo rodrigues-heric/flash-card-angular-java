@@ -16,7 +16,11 @@
 </div>
 
 <app-home-info [hasDecks]="hasDecks" [hasCards]="hasCards"></app-home-info>
-<app-home-decks [hasDecks]="hasDecks" [decks]="decks"></app-home-decks>
+<app-home-decks
+  [hasDecks]="hasDecks"
+  [decks]="decks"
+  [isRemoveOption]="isRemoveOption"
+></app-home-decks>
 <app-home-cards
   [hasCards]="hasCards"
   [cards]="cards"
