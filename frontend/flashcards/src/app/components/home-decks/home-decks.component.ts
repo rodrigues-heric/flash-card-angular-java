@@ -29,14 +29,6 @@ export class HomeDecksComponent {
   }
 
   public onRemoveDeck(id: number): void {
-    this.decksService.deleteDeck(id).subscribe({
-      next: () => {
-        this.decks = this.decks.filter((deck) => deck.id !== id);
-        this.deckToRemove.emit(id);
-      },
-      error: (err) => {
-        console.error('Error deleting deck:', err);
-      },
-    });
+    this.deckToRemove.emit(id);
   }
 }

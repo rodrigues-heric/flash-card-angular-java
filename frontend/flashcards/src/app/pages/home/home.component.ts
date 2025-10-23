@@ -129,11 +129,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public removeFromDeck(id: number): void {
-    this.decks = this.decks.filter((deck) => deck.id !== id);
+    this.decksService.deleteDeck(id).subscribe({
+      next: () => {
+        this.decks = this.decks.filter((deck) => deck.id !== id);
+      },
+      error: (err) => {
+        console.error('Error deleting deck:', err);
+      },
+    });
   }
 
   public removeFromCards(id: number): void {
-    this.cards = this.cards.filter((card) => card.id !== id);
+    this.cardsService.deleteCard(id).subscribe({
+      next: () => {
+        this.cards = this.cards.filter((card) => card.id !== id);
+      },
+      error: (err) => {
+        console.error('Error deleting card:', err);
+      },
+    });
   }
 
   public haveDecksOrCards(): boolean {

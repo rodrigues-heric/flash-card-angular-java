@@ -158,7 +158,14 @@ export class DeckComponent implements OnInit, OnDestroy {
   }
 
   public removeFromCards(id: number): void {
-    this.cards = this.cards.filter((card) => card.id !== id);
+    this.cardsService.deleteCard(id).subscribe({
+      next: () => {
+        this.cards = this.cards.filter((card) => card.id !== id);
+      },
+      error: (err) => {
+        console.error('Error deleting card:', err);
+      },
+    });
   }
 
   public isDownloading(): boolean {
