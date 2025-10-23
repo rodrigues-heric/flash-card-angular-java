@@ -87,7 +87,14 @@ export class CreateCardComponent implements OnInit, OnDestroy {
       };
 
       this.cardsService.saveCard(newCard).subscribe({
-        next: () => this.navigateToHome(),
+        next: () => {
+          if (this.deckIdValue && this.deckIdValue.length > 0) {
+            this.router.navigate(['/deck', this.deckIdValue[0]]);
+            return;
+          }
+
+          this.navigateToHome();
+        },
         error: (error) => {
           console.error('Error saving card:', error);
         },
