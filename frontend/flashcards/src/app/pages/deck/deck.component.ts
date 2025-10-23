@@ -40,8 +40,6 @@ export class DeckComponent implements OnInit, OnDestroy {
   private isRemoveSelected: boolean = false;
   private combinedSubscription: Subscription = new Subscription();
   private routeParamsSub!: Subscription;
-  private decksSubscription: Subscription = new Subscription();
-  private cardsSubscription: Subscription = new Subscription();
   private allDecks: IDeck[] = [];
   private allCards: ICard[] = [];
   private deck!: IDeck;

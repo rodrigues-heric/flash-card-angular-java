@@ -92,6 +92,13 @@ public class FlashcardService {
 
     @Transactional
     public void deleteFlashcard(Long id) {
-        this.flashcardRepository.deleteById(id);
+        Optional<FlashcardModel> flashcard = this.flashcardRepository.findById(id);
+        
+        if (flashcard.isPresent()) {
+            FlashcardModel card = flashcard.get();
+            card.getDecks().forEach(deck -> deck.getFlashcards().remove(card));
+            card.getDecks().clear();
+            this.flashcardRepository.delete(card);
+        }
     }
 }

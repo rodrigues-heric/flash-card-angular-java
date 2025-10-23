@@ -25,7 +25,7 @@ public class DecksModel {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "tb_decks_cards",
             joinColumns = @JoinColumn(name = "id_deck"),
