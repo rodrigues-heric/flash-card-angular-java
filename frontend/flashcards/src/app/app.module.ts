@@ -27,6 +27,9 @@ import { PencilSmallComponent } from './icons/pencil-small/pencil-small.componen
 import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
 import { UpdateCardComponent } from './pages/update-card/update-card.component';
 import { TrashMediumComponent } from './icons/trash-medium/trash-medium.component';
+import { DeckComponent } from './pages/deck/deck.component';
+import { CircleArrowLeftBigComponent } from './icons/circle-arrow-left-big/circle-arrow-left-big.component';
+import { CirclePlayBigComponent } from './icons/circle-play-big/circle-play-big.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { TrashMediumComponent } from './icons/trash-medium/trash-medium.componen
     UpdateDeckComponent,
     UpdateCardComponent,
     TrashMediumComponent,
+    DeckComponent,
+    CircleArrowLeftBigComponent,
+    CirclePlayBigComponent,
   ],
   imports: [
     BrowserModule,

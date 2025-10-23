@@ -15,8 +15,24 @@ export class CreateCardComponent implements OnInit, OnDestroy {
   private flipInterval!: any;
   private frontFC: FormControl = new FormControl('', [Validators.required]);
   private backFC: FormControl = new FormControl('', [Validators.required]);
+  private deckId: number[] | undefined;
 
-  constructor(private router: Router, private cardsService: CardsService) {}
+  constructor(private router: Router, private cardsService: CardsService) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras?.state as { deckId: number };
+
+    if (state && state.deckId) {
+      this.deckId = [state.deckId];
+    }
+  }
+
+  get deckIdValue(): number[] | undefined {
+    return this.deckId;
+  }
+
+  set deckIdValue(id: number[]) {
+    this.deckId = id;
+  }
 
   get flipped(): boolean {
     return this.isFlipped;
@@ -67,6 +83,7 @@ export class CreateCardComponent implements OnInit, OnDestroy {
       const newCard: ICardPost = {
         faceText: this.frontFCValue,
         backText: this.backFCValue,
+        deckId: this.deckIdValue,
       };
 
       this.cardsService.saveCard(newCard).subscribe({

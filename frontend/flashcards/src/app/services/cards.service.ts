@@ -12,7 +12,7 @@ export interface ICard {
 export interface ICardPost {
   faceText: string;
   backText: string;
-  deckId?: number;
+  deckId?: number[];
 }
 
 @Injectable({
@@ -62,7 +62,7 @@ export class CardsService {
 
   public saveCard(card: ICardPost): Observable<any> {
     this.downloading = true;
-    const url: string = this.API_URL + '/save';
+    const url: string = this.API_URL + '/save-with-deck';
 
     return this.http.post(url, card).pipe(
       tap(() => (this.downloading = false)),

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Navigation, Router } from '@angular/router';
 import { DecksService, IDeck } from 'src/app/services/decks.service';
 import { Subscription } from 'rxjs';
 
@@ -21,8 +21,8 @@ export class UpdateDeckComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const navigation = this.router.getCurrentNavigation();
-    const deckData = navigation?.extras?.state?.['deckData'] as IDeck;
+    const navigation: Navigation | null = this.router.getCurrentNavigation();
+    const deckData: IDeck = navigation?.extras?.state?.['deckData'] as IDeck;
 
     if (deckData) {
       this.deckIdValue = deckData.id;

@@ -22,6 +22,12 @@ export class HomeDecksComponent {
     });
   }
 
+  public navigateToDeck(deck: IDeck): void {
+    this.router.navigate(['/deck', deck.id], {
+      state: { deckData: deck },
+    });
+  }
+
   public onRemoveDeck(id: number): void {
     this.decksService.deleteDeck(id).subscribe({
       next: () => {

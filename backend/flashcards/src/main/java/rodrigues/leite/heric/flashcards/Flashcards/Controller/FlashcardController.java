@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import rodrigues.leite.heric.flashcards.Flashcards.DTO.FlashcardRequestDTO;
+import rodrigues.leite.heric.flashcards.Flashcards.DTO.FlashcardResponseDTO;
 import rodrigues.leite.heric.flashcards.Flashcards.Model.FlashcardModel;
 import rodrigues.leite.heric.flashcards.Flashcards.Service.FlashcardService;
 
@@ -21,9 +23,14 @@ public class FlashcardController {
         return ResponseEntity.ok(this.flashcardService.saveFlashcard(flashcard));
     }
 
+    @PostMapping("/save-with-deck")
+    public ResponseEntity<FlashcardResponseDTO> saveFlashcardWithDeck(@RequestBody FlashcardRequestDTO dto) {
+        return ResponseEntity.ok(this.flashcardService.saveFlashcardWithDeck(dto));
+    }
+
     @GetMapping("/all")
-    public ResponseEntity<Iterable<FlashcardModel>> getAllFlashcards() {
-        return ResponseEntity.ok(this.flashcardService.getAllFlashcards());
+    public ResponseEntity<Iterable<FlashcardModel>> getAllHomeFlashcards() {
+        return ResponseEntity.ok(this.flashcardService.getAllHomeFlashcards());
     }
 
     @GetMapping("/{id}")
