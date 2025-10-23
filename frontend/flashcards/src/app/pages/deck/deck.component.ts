@@ -40,6 +40,8 @@ export class DeckComponent implements OnInit, OnDestroy {
   private isRemoveSelected: boolean = false;
   private combinedSubscription: Subscription = new Subscription();
   private routeParamsSub!: Subscription;
+  private decksSubscription: Subscription = new Subscription();
+  private cardsSubscription: Subscription = new Subscription();
   private allDecks: IDeck[] = [];
   private allCards: ICard[] = [];
   private deck!: IDeck;
@@ -65,16 +67,16 @@ export class DeckComponent implements OnInit, OnDestroy {
         const deckId: number | null = params['id'];
 
         if (deckId) {
-          this.decksService.getDeck(deckId).subscribe({
-            next: (deck: IDeck) => {
-              if (deck) {
-                this.deckValue = deck;
-              } else {
-                this.router.navigate(['/']);
-              }
+          this.combinedSubscription = combineLatest([
+            this.decksService.getDeck(deckId),
+            this.cardsService.getCardsByDeckId(deckId),
+          ]).subscribe({
+            next: ([deck, cards]) => {
+              this.deckValue = deck;
+              this.cards = cards;
             },
-            error: (err) => {
-              console.error('Error fetching deck by ID:', err);
+            error: (error) => {
+              console.error('Error loading deck or cards:', error);
               this.router.navigate(['/']);
             },
           });

@@ -38,6 +38,11 @@ public class FlashcardController {
         return ResponseEntity.ok(this.flashcardService.getFlashcardById(id));
     }
 
+    @GetMapping("/by-deck/{id}")
+    public ResponseEntity<Iterable<FlashcardModel>> getFlashcardsByDeckId(@PathVariable Long id) {
+        return ResponseEntity.ok(this.flashcardService.getFlashcardsByDeckId(id));
+    }  
+
     @PutMapping("/{id}")
     public ResponseEntity<Optional<FlashcardModel>> updateFlashcard(
             @PathVariable Long id,

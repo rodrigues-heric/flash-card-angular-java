@@ -60,6 +60,20 @@ export class CardsService {
     );
   }
 
+  public getCardsByDeckId(deckId: number): Observable<ICard[]> {
+    this.downloading = true;
+    const url: string = `${this.API_URL}/by-deck/${deckId}`;
+
+    return this.http.get<ICard[]>(url).pipe(
+      tap(() => (this.downloading = false)),
+      catchError((error) => {
+        console.error('Error fetching cards by deck ID:', error);
+        this.downloading = false;
+        return of([]);
+      })
+    );
+  }
+
   public saveCard(card: ICardPost): Observable<any> {
     this.downloading = true;
     const url: string = this.API_URL + '/save-with-deck';

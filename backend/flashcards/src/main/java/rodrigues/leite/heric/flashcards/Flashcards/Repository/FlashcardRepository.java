@@ -12,4 +12,12 @@ public interface FlashcardRepository extends JpaRepository<FlashcardModel, Long>
             nativeQuery = true
     )
     List<FlashcardModel> findAllHomeCards();
+
+    @Query(
+            value = "SELECT f.* FROM \"TB_CARDS\" f " +
+                    "JOIN \"TB_DECKS_CARDS\" dc ON f.ID = dc.ID_CARD " +
+                    "WHERE dc.ID_DECK = :deckId",
+            nativeQuery = true
+    )
+    List<FlashcardModel> findFlashcardsByDeckId(Long deckId);
 }

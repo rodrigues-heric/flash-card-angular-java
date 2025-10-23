@@ -71,6 +71,11 @@ public class FlashcardService {
     }
 
     @Transactional
+    public Iterable<FlashcardModel> getFlashcardsByDeckId(Long deckId) {
+        return this.flashcardRepository.findFlashcardsByDeckId(deckId);
+    }
+
+    @Transactional
     public Optional<FlashcardModel> updateFlashcard(Long id, FlashcardModel flashcard) {
         Optional<FlashcardModel> existingFlashcardOptional = this.getFlashcardById(id);
 
