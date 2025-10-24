@@ -30,6 +30,7 @@ import { TrashMediumComponent } from './icons/trash-medium/trash-medium.componen
 import { DeckComponent } from './pages/deck/deck.component';
 import { CircleArrowLeftBigComponent } from './icons/circle-arrow-left-big/circle-arrow-left-big.component';
 import { CirclePlayBigComponent } from './icons/circle-play-big/circle-play-big.component';
+import { DeckInfoComponent } from './components/deck-info/deck-info.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CirclePlayBigComponent } from './icons/circle-play-big/circle-play-big.
     DeckComponent,
     CircleArrowLeftBigComponent,
     CirclePlayBigComponent,
+    DeckInfoComponent,
   ],
   imports: [
     BrowserModule,

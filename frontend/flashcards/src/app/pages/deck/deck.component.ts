@@ -40,7 +40,6 @@ export class DeckComponent implements OnInit, OnDestroy {
   private isRemoveSelected: boolean = false;
   private combinedSubscription: Subscription = new Subscription();
   private routeParamsSub!: Subscription;
-  private allDecks: IDeck[] = [];
   private allCards: ICard[] = [];
   private deck!: IDeck;
   private isOptionsOpen: boolean = false;
@@ -109,24 +108,12 @@ export class DeckComponent implements OnInit, OnDestroy {
     this.deck.name = name;
   }
 
-  get decks(): IDeck[] {
-    return this.allDecks;
-  }
-
-  set decks(decks: IDeck[]) {
-    this.allDecks = decks;
-  }
-
   get cards(): ICard[] {
     return this.allCards;
   }
 
   set cards(cards: ICard[]) {
     this.allCards = cards;
-  }
-
-  get hasDecks(): boolean {
-    return this.allDecks.length > 0;
   }
 
   get hasCards(): boolean {
@@ -147,14 +134,6 @@ export class DeckComponent implements OnInit, OnDestroy {
 
   public toggleRemoveOption(): void {
     this.isRemoveSelected = !this.isRemoveSelected;
-  }
-
-  public haveDecksOrCards(): boolean {
-    return this.hasDecks || this.hasCards;
-  }
-
-  public removeFromDeck(id: number): void {
-    this.decks = this.decks.filter((deck) => deck.id !== id);
   }
 
   public removeFromCards(id: number): void {

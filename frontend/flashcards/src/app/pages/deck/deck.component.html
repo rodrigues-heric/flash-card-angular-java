@@ -5,7 +5,7 @@
   </div>
 
   <div class="col edit-remove-button">
-    <ng-container *ngIf="haveDecksOrCards()">
+    <ng-container *ngIf="hasCards">
       <icon-trash-medium
         *ngIf="!isRemoveOption"
         (click)="toggleRemoveOption()"
@@ -19,13 +19,7 @@
     </ng-container>
   </div>
 
-  <app-home-info [hasDecks]="hasDecks" [hasCards]="hasCards"></app-home-info>
-  <app-home-decks
-    [hasDecks]="hasDecks"
-    [decks]="decks"
-    [isRemoveOption]="isRemoveOption"
-    (deckToRemove)="removeFromDeck($event)"
-  ></app-home-decks>
+  <app-deck-info [hasCards]="hasCards"></app-deck-info>
   <app-home-cards
     [hasCards]="hasCards"
     [cards]="cards"
@@ -54,12 +48,6 @@
             [moveState]="getMoveState()"
             (click)="navigateToCreateCard()"
           ></app-creation-option-card>
-        </div>
-        <div @optionsAnimation *ngIf="optionsState">
-          <app-creation-option-deck
-            [moveState]="getMoveState()"
-            (click)="navigateToCreateDeck()"
-          ></app-creation-option-deck>
         </div>
         <icon-circle-plus-big
           [rotationState]="getAnimationState()"
