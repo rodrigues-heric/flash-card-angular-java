@@ -1,10 +1,11 @@
-<div class="row">
+<div *ngIf="!isDownloading()" class="row">
   <div class="col"></div>
   <div class="col">
-    <app-title [inputTitle]="'Flashcards'"></app-title>
+    <app-title [inputTitle]="deckNameValue"></app-title>
   </div>
+
   <div class="col edit-remove-button">
-    <ng-container *ngIf="haveDecksOrCards()">
+    <ng-container *ngIf="hasCards">
       <icon-trash-medium
         *ngIf="!isRemoveOption"
         (click)="toggleRemoveOption()"
@@ -17,26 +18,26 @@
       ></icon-pencil-small>
     </ng-container>
   </div>
-</div>
 
-<app-home-info [hasDecks]="hasDecks" [hasCards]="hasCards"></app-home-info>
-<app-home-decks
-  [hasDecks]="hasDecks"
-  [decks]="decks"
-  [isRemoveOption]="isRemoveOption"
-  (deckToRemove)="removeFromDeck($event)"
-></app-home-decks>
-<app-home-cards
-  [hasCards]="hasCards"
-  [cards]="cards"
-  [isRemoveOption]="isRemoveOption"
-  (cardToRemove)="removeFromCards($event)"
-></app-home-cards>
+  <app-deck-info [hasCards]="hasCards"></app-deck-info>
+  <app-home-cards
+    [hasCards]="hasCards"
+    [cards]="cards"
+    [isRemoveOption]="isRemoveOption"
+    (cardToRemove)="removeFromCards($event)"
+  ></app-home-cards>
+</div>
 
 <div class="backdrop" *ngIf="optionsState"></div>
 
 <div class="row">
-  <div class="col"></div>
+  <div class="col">
+    <div class="position-fixed bottom-0 mb-2 ms-4 start-0">
+      <icon-circle-arrow-left-big
+        (click)="navigateToHome()"
+      ></icon-circle-arrow-left-big>
+    </div>
+  </div>
   <div class="col">
     <div
       class="position-fixed bottom-0 mb-2 start-50 translate-middle-x menu-container"
@@ -47,12 +48,6 @@
             [moveState]="getMoveState()"
             (click)="navigateToCreateCard()"
           ></app-creation-option-card>
-        </div>
-        <div @optionsAnimation *ngIf="optionsState">
-          <app-creation-option-deck
-            [moveState]="getMoveState()"
-            (click)="navigateToCreateDeck()"
-          ></app-creation-option-deck>
         </div>
         <icon-circle-plus-big
           [rotationState]="getAnimationState()"

@@ -1,8 +1,10 @@
 package rodrigues.leite.heric.flashcards.Flashcards.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import rodrigues.leite.heric.flashcards.Decks.Model.DecksModel;
 
@@ -14,6 +16,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class FlashcardModel {
 
     @Id
@@ -28,5 +31,15 @@ public class FlashcardModel {
     private String backText;
 
     @ManyToMany(mappedBy = "flashcards")
+    @JsonIgnoreProperties("flashcards")
     private Set<DecksModel> decks = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "FlashcardModel{" +
+                "id=" + id +
+                ", faceText='" + faceText + "\'" +
+                ", backText='" + backText + "\'" +
+                "}";
+    }
 }

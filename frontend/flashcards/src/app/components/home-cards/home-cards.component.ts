@@ -23,14 +23,6 @@ export class HomeCardsComponent {
   }
 
   public onRemoveCard(id: number): void {
-    this.cardsService.deleteCard(id).subscribe({
-      next: () => {
-        this.cards = this.cards.filter((card) => card.id !== id);
-        this.cardToRemove.emit(id);
-      },
-      error: (err) => {
-        console.error('Error deleting card:', err);
-      },
-    });
+    this.cardToRemove.emit(id);
   }
 }
