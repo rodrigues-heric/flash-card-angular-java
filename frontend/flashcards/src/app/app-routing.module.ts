@@ -6,6 +6,7 @@ import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
 import { UpdateCardComponent } from './pages/update-card/update-card.component';
 import { DeckComponent } from './pages/deck/deck.component';
+import { PlayCardsComponent } from './pages/play-cards/play-cards.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'create-deck', component: CreateDeckComponent },
   { path: 'update-deck/:id', component: UpdateDeckComponent },
   { path: 'deck/:id', component: DeckComponent },
+  { path: 'play-cards', component: PlayCardsComponent },
 ];
 
 @NgModule({

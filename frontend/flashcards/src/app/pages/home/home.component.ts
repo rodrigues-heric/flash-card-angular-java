@@ -128,6 +128,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/create-deck']);
   }
 
+  public navigateToPlayCards(): void {
+    this.router.navigate(['/play-cards'], {
+      state: { cards: this.cards },
+    });
+  }
+
   public removeFromDeck(id: number): void {
     this.decksService.deleteDeck(id).subscribe({
       next: () => {

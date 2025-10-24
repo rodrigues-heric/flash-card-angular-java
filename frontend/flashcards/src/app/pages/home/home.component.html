@@ -63,7 +63,10 @@
   </div>
   <div class="col">
     <div class="position-fixed bottom-0 mb-2 me-4 end-0">
-      <icon-circle-play-big></icon-circle-play-big>
+      <icon-circle-play-big
+        *ngIf="hasCards"
+        (click)="navigateToPlayCards()"
+      ></icon-circle-play-big>
     </div>
   </div>
 </div>
