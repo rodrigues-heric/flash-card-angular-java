@@ -1,5 +1,6 @@
 package rodrigues.leite.heric.flashcards.Decks.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,11 +25,20 @@ public class DecksModel {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "tb_decks_cards",
             joinColumns = @JoinColumn(name = "id_deck"),
             inverseJoinColumns = @JoinColumn(name = "id_card")
     )
+    @JsonIgnoreProperties("decks")
     private Set<FlashcardModel> flashcards = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "DecksModel{" +
+                "id=" + id +
+                ", name='" + name + "\'" +
+                "}";
+    }
 }
