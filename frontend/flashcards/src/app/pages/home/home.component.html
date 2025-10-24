@@ -36,6 +36,7 @@
 <div class="backdrop" *ngIf="optionsState"></div>
 
 <div class="row">
+  <div class="col"></div>
   <div class="col">
     <div
       class="position-fixed bottom-0 mb-2 start-50 translate-middle-x menu-container"
@@ -58,6 +59,11 @@
           (click)="toggleOptionsState()"
         ></icon-circle-plus-big>
       </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="position-fixed bottom-0 mb-2 me-4 end-0">
+      <icon-circle-play-big></icon-circle-play-big>
     </div>
   </div>
 </div>
