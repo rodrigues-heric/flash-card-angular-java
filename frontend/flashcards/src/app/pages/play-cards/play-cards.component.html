@@ -3,10 +3,36 @@
     <span class="float-end">{{ currentCardIndex }} / {{ numberOfCards }}</span>
   </div>
 </div>
-<div class="row">
+
+<div class="row mb-4">
   <div class="col">
     <div class="progress-container">
       <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="flip-card" [class.flipped]="flipped">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card text-center h-100">
+            <div class="card-header header-font">Frente</div>
+            <div class="card-body body-style">
+              {{ cards[currentCardIndex - 1]?.faceText }}
+            </div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card text-center h-100">
+            <div class="card-header header-font">Verso</div>
+            <div class="card-body body-style">
+              {{ cards[currentCardIndex - 1]?.backText }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

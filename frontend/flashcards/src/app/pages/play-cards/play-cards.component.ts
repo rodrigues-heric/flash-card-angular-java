@@ -11,9 +11,14 @@ export class PlayCardsComponent {
   private allCards: ICard[] = [];
   private currentIndex: number = 1;
   private totalCards: number = 0;
+  private isFlipped = false;
 
   constructor(private router: Router) {
     this.initializeCards();
+  }
+
+  get flipped(): boolean {
+    return this.isFlipped;
   }
 
   get cards(): ICard[] {
@@ -51,7 +56,11 @@ export class PlayCardsComponent {
     this.totalCards = this.allCards.length;
   }
 
-  public incIndex(): void {
+  public toggleFlip(): void {
+    this.isFlipped = !this.isFlipped;
+  }
+
+  public incrementIndex(): void {
     if (this.currentIndex < this.totalCards) {
       this.currentIndex++;
     }
