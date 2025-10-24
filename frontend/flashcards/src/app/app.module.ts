@@ -32,6 +32,8 @@ import { CircleArrowLeftBigComponent } from './icons/circle-arrow-left-big/circl
 import { CirclePlayBigComponent } from './icons/circle-play-big/circle-play-big.component';
 import { DeckInfoComponent } from './components/deck-info/deck-info.component';
 import { PlayCardsComponent } from './pages/play-cards/play-cards.component';
+import { RotateBigComponent } from './icons/rotate-big/rotate-big.component';
+import { CircleArrowRightBigComponent } from './icons/circle-arrow-right-big/circle-arrow-right-big.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { PlayCardsComponent } from './pages/play-cards/play-cards.component';
     CirclePlayBigComponent,
     DeckInfoComponent,
     PlayCardsComponent,
+    RotateBigComponent,
+    CircleArrowRightBigComponent,
   ],
   imports: [
     BrowserModule,

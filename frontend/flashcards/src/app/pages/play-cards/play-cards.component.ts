@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICard } from 'src/app/services/cards.service';
 
+const ANIMATION_MS = 650;
+
 @Component({
   selector: 'app-play-cards',
   templateUrl: './play-cards.component.html',
@@ -19,6 +21,10 @@ export class PlayCardsComponent {
 
   get flipped(): boolean {
     return this.isFlipped;
+  }
+
+  set flipped(value: boolean) {
+    this.isFlipped = value;
   }
 
   get cards(): ICard[] {
@@ -56,13 +62,37 @@ export class PlayCardsComponent {
     this.totalCards = this.allCards.length;
   }
 
+  private async resetCardFlip(): Promise<void> {
+    if (this.isFlipped) {
+      this.isFlipped = false;
+      await new Promise((resolve) => setTimeout(resolve, ANIMATION_MS));
+    }
+  }
+
+  private navigateToHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  private async previousCard(): Promise<void> {
+    await this.resetCardFlip();
+    this.currentCardIndex = this.currentCardIndex - 1;
+  }
+
   public toggleFlip(): void {
     this.isFlipped = !this.isFlipped;
   }
 
-  public incrementIndex(): void {
+  public previous(): void {
+    if (this.currentIndex > 1) this.previousCard();
+    else this.navigateToHome();
+  }
+
+  public async nextCard(): Promise<void> {
     if (this.currentIndex < this.totalCards) {
+      await this.resetCardFlip();
       this.currentIndex++;
+    } else {
+      this.navigateToHome();
     }
   }
 }
