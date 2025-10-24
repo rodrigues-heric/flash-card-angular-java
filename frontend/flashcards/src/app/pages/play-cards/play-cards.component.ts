@@ -40,10 +40,20 @@ export class PlayCardsComponent {
     this.totalCards = value;
   }
 
+  get progressPercentage(): number {
+    return (this.currentIndex / this.totalCards) * 100;
+  }
+
   private initializeCards(): void {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { cards: ICard[] };
     this.allCards = state?.cards || [];
     this.totalCards = this.allCards.length;
+  }
+
+  public incIndex(): void {
+    if (this.currentIndex < this.totalCards) {
+      this.currentIndex++;
+    }
   }
 }

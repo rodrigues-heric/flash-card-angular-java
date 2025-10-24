@@ -1,5 +1,12 @@
-<div class="row">
+<div class="row mb-2">
   <div class="col">
     <span class="float-end">{{ currentCardIndex }} / {{ numberOfCards }}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+    </div>
   </div>
 </div>
