@@ -1,0 +1,62 @@
+<div class="row mb-2">
+  <div class="col">
+    <span class="float-end">{{ currentCardIndex }} / {{ numberOfCards }}</span>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="flip-card" [class.flipped]="flipped">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card text-center h-100">
+            <div class="card-header header-font">Frente</div>
+            <div class="card-body body-style">
+              {{ cards[currentCardIndex - 1].faceText }}
+            </div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card text-center h-100">
+            <div class="card-header header-font">Verso</div>
+            <div class="card-body body-style">
+              {{ cards[currentCardIndex - 1].backText }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="position-fixed bottom-0 mb-2 ms-4 start-0">
+      <icon-circle-arrow-left-big
+        (click)="previous()"
+      ></icon-circle-arrow-left-big>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="position-fixed bottom-0 mb-2 me-4 start-50 translate-middle-x">
+      <icon-rotate-big (click)="toggleFlip()"></icon-rotate-big>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="position-fixed bottom-0 mb-2 me-4 end-0">
+      <icon-circle-arrow-right-big
+        (click)="nextCard()"
+      ></icon-circle-arrow-right-big>
+    </div>
+  </div>
+</div>
