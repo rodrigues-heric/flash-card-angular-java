@@ -1,5 +1,7 @@
 package rodrigues.leite.heric.flashcards.Flashcards.Service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +12,9 @@ import rodrigues.leite.heric.flashcards.Flashcards.DTO.FlashcardResponseDTO;
 import rodrigues.leite.heric.flashcards.Flashcards.Model.FlashcardModel;
 import rodrigues.leite.heric.flashcards.Flashcards.Repository.FlashcardRepository;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class FlashcardService {
@@ -21,6 +23,9 @@ public class FlashcardService {
     private FlashcardRepository flashcardRepository;
     @Autowired
     private DecksRepository decksRepository;
+    
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Transactional
     public FlashcardModel saveFlashcard(FlashcardModel flashcard) {
@@ -32,21 +37,31 @@ public class FlashcardService {
         FlashcardModel flashcard_to_save = new FlashcardModel();
         flashcard_to_save.setFaceText(dto.getFaceText());
         flashcard_to_save.setBackText(dto.getBackText());
+        
+        FlashcardModel flashcard_saved = this.flashcardRepository.save(flashcard_to_save);
+        Set<Long> deckIds = new HashSet<>();
 
         if (dto.getDeckId() != null && !dto.getDeckId().isEmpty()) {
-            Set<DecksModel> decks = dto.getDeckId().stream()
-                    .map(id -> decksRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Deck not found: " + id)))
-                    .collect(Collectors.toSet());
+            deckIds.addAll(dto.getDeckId());
+            
+            for (Long deckId : dto.getDeckId()) {
+                DecksModel deck = decksRepository.findById(deckId)
+                    .orElseThrow(() -> new RuntimeException("Deck not found: " + deckId));
 
-            flashcard_to_save.setDecks(decks);
-            decks.forEach(deck -> deck.getFlashcards().add(flashcard_to_save));
+                if (deck.getFlashcards() == null) {
+                    deck.setFlashcards(new HashSet<>());
+                }
+                
+                deck.getFlashcards().add(flashcard_saved);
+                flashcard_saved.getDecks().add(deck);
+                
+                flashcardRepository.save(flashcard_saved);
+                decksRepository.save(deck);
+                
+                entityManager.flush();
+            }
         }
 
-        FlashcardModel flashcard_saved = this.flashcardRepository.save(flashcard_to_save);
-        Set<Long> deckIds = flashcard_saved.getDecks().stream()
-                .map(DecksModel::getId)
-                .collect(Collectors.toSet());
         return new FlashcardResponseDTO(
                 flashcard_saved.getId(),
                 flashcard_saved.getFaceText(),

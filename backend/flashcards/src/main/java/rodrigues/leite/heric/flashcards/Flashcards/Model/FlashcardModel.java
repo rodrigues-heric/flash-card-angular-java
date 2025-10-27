@@ -16,12 +16,12 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class FlashcardModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(name = "face_text", nullable = false)
@@ -30,9 +30,19 @@ public class FlashcardModel {
     @Column(name = "back_text", nullable = false)
     private String backText;
 
-    @ManyToMany(mappedBy = "flashcards")
+    @ManyToMany(mappedBy = "flashcards", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("flashcards")
     private Set<DecksModel> decks = new HashSet<>();
+
+    public void addDeck(DecksModel deck) {
+        this.decks.add(deck);
+        deck.getFlashcards().add(this);
+    }
+
+    public void removeDeck(DecksModel deck) {
+        this.decks.remove(deck);
+        deck.getFlashcards().remove(this);
+    }
 
     @Override
     public String toString() {

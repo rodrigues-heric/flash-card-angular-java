@@ -53,7 +53,7 @@ export class DeckComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const navigation: Navigation | null = this.router.getCurrentNavigation();
-    const deckData: IDeck | null = navigation?.extras?.state?.[
+    const deckData: IDeck | undefined = navigation?.extras?.state?.[
       'deckData'
     ] as IDeck;
 
@@ -132,6 +132,12 @@ export class DeckComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
+  public navigateToCreateCard(): void {
+    this.router.navigate(['/create-card'], {
+      state: { deckId: this.deck.id },
+    });
+  }
+
   public toggleRemoveOption(): void {
     this.isRemoveSelected = !this.isRemoveSelected;
   }
@@ -149,16 +155,6 @@ export class DeckComponent implements OnInit, OnDestroy {
 
   public isDownloading(): boolean {
     return this.decksService.downloading || this.cardsService.downloading;
-  }
-
-  public navigateToCreateCard(): void {
-    this.router.navigate(['/create-card'], {
-      state: { deckId: this.deck.id },
-    });
-  }
-
-  public navigateToCreateDeck(): void {
-    this.router.navigate(['/create-deck']);
   }
 
   public getMoveState(): 'default' | 'up' {
