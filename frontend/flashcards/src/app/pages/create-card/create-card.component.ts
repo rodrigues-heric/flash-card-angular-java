@@ -92,7 +92,6 @@ export class CreateCardComponent implements OnInit, OnDestroy {
             this.router.navigate(['/deck', this.deckIdValue[0]]);
             return;
           }
-
           this.navigateToHome();
         },
         error: (error) => {
