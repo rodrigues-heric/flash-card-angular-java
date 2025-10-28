@@ -1,11 +1,14 @@
 <ng-container *ngIf="hasCards">
   <div class="row mb-2">
-    <div class="col">Flashcards</div>
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">Flashcards</div>
+    <div class="col-lg-4"></div>
   </div>
 
   <ng-container *ngFor="let card of cards">
     <div class="row mb-2">
-      <div class="col">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
         <div class="card text-center">
           <div class="card-body body-style">
             <div class="row">
@@ -29,6 +32,7 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-4"></div>
     </div>
   </ng-container>
 </ng-container>
