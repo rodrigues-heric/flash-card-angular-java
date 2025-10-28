@@ -138,6 +138,12 @@ export class DeckComponent implements OnInit, OnDestroy {
     });
   }
 
+  public navigateToPlayCards(): void {
+    this.router.navigate(['/play-cards'], {
+      state: { cards: this.cards },
+    });
+  }
+
   public toggleRemoveOption(): void {
     this.isRemoveSelected = !this.isRemoveSelected;
   }
